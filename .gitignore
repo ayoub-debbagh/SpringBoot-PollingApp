@@ -1,0 +1,22 @@
+# Ignore Maven target directory
+/polling-api/target/
+
+# Ignore IntelliJ IDEA project files
+/polling-api/.idea/
+/polling-api/*.iml
+
+/data/
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore environment variable files
+.env
