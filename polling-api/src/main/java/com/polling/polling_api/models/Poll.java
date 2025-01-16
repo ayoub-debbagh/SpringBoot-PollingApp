@@ -1,6 +1,7 @@
 package com.polling.polling_api.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +35,6 @@ public class Poll {
     private Boolean isPublished = false;
 
     @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Option> options = new ArrayList<>();
 }

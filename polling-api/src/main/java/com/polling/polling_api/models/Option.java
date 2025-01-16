@@ -1,6 +1,7 @@
 package com.polling.polling_api.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,8 @@ public class Option {
     @Column(nullable = false)
     private Long VoteCount = 0L;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "poll_id", nullable = false)
+    @JsonBackReference
     private Poll poll;
 }
