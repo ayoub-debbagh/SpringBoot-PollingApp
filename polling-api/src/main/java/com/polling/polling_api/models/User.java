@@ -1,5 +1,8 @@
 package com.polling.polling_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,14 +32,20 @@ public class User implements UserDetails {
     private String username;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
     private String email;
 
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Poll> polls;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
+    @JsonIgnore
     private Set<String> roles = new HashSet<>();
 
     @Override
@@ -45,16 +54,6 @@ public class User implements UserDetails {
         return roles.stream()
                 .map(SimpleGrantedAuthority::new) // Create a SimpleGrantedAuthority for each role
                 .collect(Collectors.toSet());  // Collect them into a Set
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -75,5 +74,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+
+    @PrePersist
+    public void prePersist() {
+        if(roles == null) {
+            roles = new HashSet<>();
+        }
     }
 }

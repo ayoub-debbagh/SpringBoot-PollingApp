@@ -23,7 +23,11 @@ public class Option {
     private String text;
 
     @Column(nullable = false)
-    private Long VoteCount = 0L;
+    private Long voteCount = 0L;
+
+    @Version
+    private int version;
+
 
     @ManyToOne()
     @JoinColumn(name = "poll_id", nullable = false)
