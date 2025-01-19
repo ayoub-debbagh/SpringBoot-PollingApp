@@ -44,8 +44,8 @@ Polling API is a Spring Boot-based RESTful service that allows users to create, 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-repository-url.git
-   cd polling_api
+   git clone https://github.com/SpringBoot-PollingApp.git
+   cd SpringBoot-PollingApp
    ```
 
 2. **Configure the Database**
