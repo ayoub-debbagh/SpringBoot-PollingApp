@@ -1,4 +1,4 @@
-package com.polling.polling_api.config;
+package com.e_commerce.ecom.config;
 
 
 import com.polling.polling_api.security.JwtFilter;

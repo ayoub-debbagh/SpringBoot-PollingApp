@@ -46,6 +46,7 @@ public class User implements UserDetails {
     @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @JsonIgnore
+
     private Set<String> roles = new HashSet<>();
 
     @Override

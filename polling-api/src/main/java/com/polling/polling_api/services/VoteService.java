@@ -61,18 +61,16 @@ public class VoteService {
         if(voteRepository.existsByUserIdandOptionPollId(user.getId(), optionalOption.get().getId())) {
             throw new EntityExistsException("You have already voted in this poll");
         }
-        System.out.println("User found successfully" + user);
-//        System.out.println("Poll found successfully" + poll);
-//
-//
-//        Vote vote = new Vote();
-//        vote.setUser(user);
-//        vote.setOption(optionalOption.get());
-//        Vote createVote = voteRepository.save(vote);
-//
-//        optionRepository.incrementVoteCount(optionId);
-//
-//        System.out.println("Vote saved successfully" + vote);
-//        System.out.println("Option updated successfully" + optionalOption.get());
+
+
+        Vote vote = new Vote();
+        vote.setUser(user);
+        vote.setOption(optionalOption.get());
+        Vote createVote = voteRepository.save(vote);
+
+        optionRepository.incrementVoteCount(optionId);
+
+        System.out.println("Vote saved successfully" + vote);
+        System.out.println("Option updated successfully" + optionalOption.get());
     }
 }
